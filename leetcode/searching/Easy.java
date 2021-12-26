@@ -61,4 +61,27 @@ public class Easy {
         }
         return new int[]{};
     }
+
+//    5. https://leetcode.com/problems/valid-perfect-square/
+    public boolean isPerfectSquare(int num) {
+        if (num==0 || num==1)
+            return true;
+
+        int l=2;
+        int h=num/2;
+
+        while (l<=h){
+            long m = l+ (h-l)/2;
+            if (m*m==num)
+                return true;
+            else if (m*m>num)
+                h=(int)m-1;
+            else
+                l=(int)m+1;
+        }
+
+        return false;
+
+    }
 }
+
