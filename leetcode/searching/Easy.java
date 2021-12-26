@@ -32,21 +32,33 @@ public class Easy {
 //    3. https://leetcode.com/problems/first-bad-version/
     static int firstBadVersion(int n) {
         int l = 1;
-        while (l<=n){
-            int mid = l + (n-l)/2;
-            if (isBadVersion(mid)){
-                if (!isBadVersion(mid-1)){
-                    return mid+1;
-                }
-                n = mid-1;
+        int h = n;
+        while (l<h){
+            int m = l + (h-l)/2;
+            if (isBadVersion(m)){
+                h = m;
             }
             else {
-                if (isBadVersion(mid+1)){
-                    return mid+1;
-                }
-                l = mid+1;
+                l = m+1;
             }
         }
-        return -1;
+        if (isBadVersion(l))
+            return l;
+        return h;
+    }
+
+//    4. https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+    static int[] twoSum(int[] numbers, int target) {
+        int l = 0;
+        int h = numbers.length-1;
+        while (l<h){
+            if (numbers[l]+numbers[h]==target)
+                return new int[]{l+1, h+1};
+            else if (numbers[l]+numbers[h]<target)
+                l++;
+            else
+                h--;
+        }
+        return new int[]{};
     }
 }
