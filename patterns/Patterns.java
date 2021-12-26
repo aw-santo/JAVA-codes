@@ -1,4 +1,4 @@
-package com.san.patterns;
+// package com.san.patterns;
 
 public class Patterns {
     public static void main(String args[]){
