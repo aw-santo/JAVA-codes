@@ -12,6 +12,20 @@ public class Easy {
 
 //    2. https://leetcode.com/problems/guess-number-higher-or-lower/
     static int guessNumber(int n) {
-        int mid = 1 + (n-1)/2;
+        int l = 1;
+//        int h = n;
+        while (l<=n){
+            int mid = l + (h-l)/2;
+            if (guess(mid)==-1){
+                n = mid-1;
+            }
+            else if (guess(mid)==1){
+                l = mid+1;
+            }
+            else {
+                return mid;
+            }
+        }
+        return -1;
     }
 }
