@@ -2,7 +2,7 @@ package com.san.leetcode.searching;
 
 public class Easy {
     public static void main(String[] args){
-        System.out.println("sanket");
+        System.out.println(arrangeCoins(3));
     }
 
 //    1. https://leetcode.com/problems/sqrtx/
@@ -11,41 +11,41 @@ public class Easy {
 //    }
 
 //    2. https://leetcode.com/problems/guess-number-higher-or-lower/
-    static int guessNumber(int n) {
-        int l = 1;
-//        int h = n;
-        while (l<=n){
-            int mid = l + (h-l)/2;
-            if (guess(mid)==-1){
-                n = mid-1;
-            }
-            else if (guess(mid)==1){
-                l = mid+1;
-            }
-            else {
-                return mid;
-            }
-        }
-        return -1;
-    }
+//    static int guessNumber(int n) {
+//        int l = 1;
+////        int h = n;
+//        while (l<=n){
+//            int mid = l + (h-l)/2;
+//            if (guess(mid)==-1){
+//                n = mid-1;
+//            }
+//            else if (guess(mid)==1){
+//                l = mid+1;
+//            }
+//            else {
+//                return mid;
+//            }
+//        }
+//        return -1;
+//    }
 
 //    3. https://leetcode.com/problems/first-bad-version/
-    static int firstBadVersion(int n) {
-        int l = 1;
-        int h = n;
-        while (l<h){
-            int m = l + (h-l)/2;
-            if (isBadVersion(m)){
-                h = m;
-            }
-            else {
-                l = m+1;
-            }
-        }
-        if (isBadVersion(l))
-            return l;
-        return h;
-    }
+//    static int firstBadVersion(int n) {
+//        int l = 1;
+//        int h = n;
+//        while (l<h){
+//            int m = l + (h-l)/2;
+//            if (isBadVersion(m)){
+//                h = m;
+//            }
+//            else {
+//                l = m+1;
+//            }
+//        }
+//        if (isBadVersion(l))
+//            return l;
+//        return h;
+//    }
 
 //    4. https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
     static int[] twoSum(int[] numbers, int target) {
@@ -82,6 +82,22 @@ public class Easy {
 
         return false;
 
+    }
+
+//    6. https://leetcode.com/problems/arranging-coins/
+    static int arrangeCoins(int n) {
+//        int c=1;
+        if (n==1 || n==0){
+            return n;
+        }
+        int stair = 0;
+        int i=1;
+        while (n>=i){
+            stair++;
+            n-=i;
+            i++;
+        }
+        return stair;
     }
 }
 
