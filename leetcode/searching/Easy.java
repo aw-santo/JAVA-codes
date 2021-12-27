@@ -2,7 +2,7 @@ package com.san.leetcode.searching;
 
 public class Easy {
     public static void main(String[] args){
-        System.out.println(arrangeCoins(3));
+        System.out.println((int)('a'));
     }
 
 //    1. https://leetcode.com/problems/sqrtx/
@@ -98,6 +98,21 @@ public class Easy {
             i++;
         }
         return stair;
+    }
+
+//    7. https://leetcode.com/problems/find-smallest-letter-greater-than-target/
+    static char nextGreatestLetter(char[] letters, char target) {
+        char ans = letters[0];
+        int max = Integer.MAX_VALUE;
+
+        for (int i = 0; i < letters.length; i++) {
+            char ch = letters[i];
+            if ((int)ch < max && (int)ch > (int)target){
+                max = (int)ch;
+                ans = ch;
+            }
+        }
+        return ans;
     }
 }
 
