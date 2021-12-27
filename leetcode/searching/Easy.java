@@ -107,9 +107,9 @@ public class Easy {
 
         for (int i = 0; i < letters.length; i++) {
             char ch = letters[i];
-            if ((int)ch < max && (int)ch > (int)target){
-                max = (int)ch;
+            if ((int) ch < max && (int)ch > target){
                 ans = ch;
+                max = (int)ch;
             }
         }
         return ans;
