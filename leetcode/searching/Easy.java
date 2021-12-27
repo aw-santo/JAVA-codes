@@ -1,5 +1,7 @@
 package com.san.leetcode.searching;
 
+import java.util.ArrayList;
+
 public class Easy {
     public static void main(String[] args){
         System.out.println((int)('a'));
@@ -113,6 +115,14 @@ public class Easy {
             }
         }
         return ans;
+    }
+
+//    8. https://leetcode.com/problems/kth-missing-positive-number/
+    static int findKthPositive(int[] arr, int k) {
+        ArrayList<Integer> ls = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            ls.set(arr[i], arr[i]);
+        }
     }
 }
 
