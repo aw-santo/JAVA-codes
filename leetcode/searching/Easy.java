@@ -7,9 +7,11 @@ public class Easy {
     public static void main(String[] args){
         int[] arr= new int[]{2,3,4,7,11};
 //        System.out.println(findKthPositive(arr, 5));
-        ArrayList<Integer> ls = new ArrayList<>(11, -1);
+//        ArrayList<Integer> ls = new ArrayList<>(11, -1);
 //        ls.set(10, 11);
-        System.out.println(ls.get(4));
+//        System.out.println(ls.get(4));
+
+        System.out.println(Arrays.toString(intersect(new int[]{4, 9, 5}, new int[]{9, 4, 9, 8, 4})));
     }
 
 //    1. https://leetcode.com/problems/sqrtx/
@@ -206,6 +208,25 @@ public class Easy {
             }
         }
 
+        return Arrays.copyOf(ans, index);
+    }
+
+//    13. https://leetcode.com/problems/intersection-of-two-arrays-ii/
+    static int[] intersect(int[] nums1, int[] nums2) {
+        int[] counter = new int[1000 + 1];
+        for (int i = 0; i < nums1.length; i++) {
+            counter[nums1[i]]++;
+        }
+
+        int[] ans = new int[Math.max(nums1.length, nums2.length)];
+        int index = 0;
+        for (int i = 0; i < nums2.length; i++) {
+            if (counter[nums2[i]]>0){
+                ans[index] = nums2[i];
+                index++;
+                counter[nums2[i]]--;
+            }
+        }
         return Arrays.copyOf(ans, index);
     }
 }
