@@ -1,6 +1,7 @@
 package com.san.leetcode.searching;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Easy {
     public static void main(String[] args){
@@ -190,25 +191,22 @@ public class Easy {
 
 //    12. https://leetcode.com/problems/intersection-of-two-arrays/
     public int[] intersection(int[] nums1, int[] nums2) {
-        int size = Math.min(nums1.length, nums2.length);
-        int[] arr = new int[size];
-        int size_arr = 0;
-        boolean is_common = false;
-
+        int[] counter = new int[1000+1];
         for (int i = 0; i < nums1.length; i++) {
-            int e = nums1[i];
-            for (int j = 0; j < nums2.length; j++) {
-                if (nums1[i] == nums2[j]){
-                    is_common = true;
-                    arr[size_arr] = e;
-                    size_arr++;
-                    break;
-                }
+            counter[nums1[i]]++;
+        }
+
+        int[] ans = new int[nums1.length];
+        int index = 0;
+
+        for (int i = 0; i < nums2.length; i++) {
+            if (counter[nums2[i]]>0){
+                ans[index++] = nums2[i];
+                counter[nums2[i]] = 0;
             }
         }
-        if (!is_common)
-            return new int[]{};
-        return arr;
+
+        return Arrays.copyOf(ans, index);
     }
 }
 
