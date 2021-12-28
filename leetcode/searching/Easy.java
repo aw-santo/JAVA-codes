@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 public class Easy {
     public static void main(String[] args){
-        System.out.println((int)('a'));
+        int[] arr= new int[]{2,3,4,7,11};
+//        System.out.println(findKthPositive(arr, 5));
+        ArrayList<Integer> ls = new ArrayList<>(11, -1);
+//        ls.set(10, 11);
+        System.out.println(ls.get(4));
     }
 
 //    1. https://leetcode.com/problems/sqrtx/
@@ -119,10 +123,38 @@ public class Easy {
 
 //    8. https://leetcode.com/problems/kth-missing-positive-number/
     static int findKthPositive(int[] arr, int k) {
-        ArrayList<Integer> ls = new ArrayList<>();
+        ArrayList<Integer> ls = new ArrayList<>(arr[arr.length-1]+1);
+        for (int i = 0; i < arr[arr.length-1]+1; i++) {
+            ls.add(-1);
+        }
         for (int i = 0; i < arr.length; i++) {
             ls.set(arr[i], arr[i]);
         }
+        int kl = 0;
+        int count = 1;
+        while (kl<ls.size()){
+            if (ls.get(kl)==-1 && count==k)
+                return kl;
+        }
+        return ls.get(ls.size()-1)+k;
     }
+
+//    9. https://leetcode.com/problems/search-insert-position/
+    public int searchInsert(int[] nums, int target) {
+        int l = 0;
+        int h = nums.length-1;
+        while (l<=h){
+            int m = l + (h-l)/2;
+            if (nums[m]==target)
+                return m;
+            if (target<nums[m])
+                h = m-1;
+            else
+                l = m+1;
+        }
+        return l;
+    }
+
+    
 }
 
