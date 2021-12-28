@@ -173,5 +173,19 @@ public class Easy {
         }
         return -1;
     }
+
+//    11. https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/
+    public int countNegatives(int[][] grid) {
+        int count = 0;
+        for (int i = 0; i < grid.length; i++) {
+            int j = grid[i].length-1;
+            while (j>=0 && grid[i][j]<0){
+                count++;
+                j--;
+            }
+        }
+
+        return count;
+    }
 }
 
