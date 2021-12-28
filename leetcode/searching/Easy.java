@@ -155,6 +155,23 @@ public class Easy {
         return l;
     }
 
-    
+//    10. https://leetcode.com/problems/peak-index-in-a-mountain-array/
+    public int peakIndexInMountainArray(int[] arr) {
+        int l  =0;
+        int h = arr.length;
+        while (l<=h){
+            int m = l + (h-l)/2;
+            if (arr[m]>arr[m-1] && arr[m]>arr[m+1]){
+                return m;
+            }
+            if (arr[m]>arr[m-1]){
+                l = m;
+            }
+            else {
+                h = m;
+            }
+        }
+        return -1;
+    }
 }
 
