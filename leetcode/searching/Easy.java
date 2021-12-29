@@ -247,5 +247,23 @@ public class Easy {
         }
         return false;
     }
+
+//    16. https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/
+    static int specialArray(int[] nums) {
+        int x = 0;
+        for (int i = 0; i < nums.length;) {
+            int count = 0;
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[j]>=x){
+                    count++;
+                    if (count>x){
+                        count = 0;
+                        x++;
+                        break;
+                    }
+                }
+            }
+        }
+    }
 }
 
