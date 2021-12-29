@@ -231,9 +231,9 @@ public class Easy {
     }
 
 //    14.  https://leetcode.com/problems/fair-candy-swap/
-    static int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
-
-    }
+//    static int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
+//        return 0;
+//    }
 
 //    15. https://leetcode.com/problems/check-if-n-and-its-double-exist/
     static boolean checkIfExist(int[] arr) {
@@ -264,6 +264,7 @@ public class Easy {
                 }
             }
         }
+        return 0;
     }
 
 //    17. https://leetcode.com/problems/binary-search/
