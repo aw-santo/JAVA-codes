@@ -229,5 +229,23 @@ public class Easy {
         }
         return Arrays.copyOf(ans, index);
     }
+
+//    14.  https://leetcode.com/problems/fair-candy-swap/
+    static int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
+
+    }
+
+//    15. https://leetcode.com/problems/check-if-n-and-its-double-exist/
+    static boolean checkIfExist(int[] arr) {
+        for (int i = 0; i < arr.length-1; i++) {
+            int n = arr[i];
+            for (int j = i+1; j < arr.length; j++) {
+                if (n == 2*arr[j] || 2*n == arr[j]){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
 
