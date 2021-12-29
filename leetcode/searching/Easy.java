@@ -265,5 +265,10 @@ public class Easy {
             }
         }
     }
+
+//    17. https://leetcode.com/problems/binary-search/
+    static int search(int[] nums, int target) {
+    
+    }
 }
 
