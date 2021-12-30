@@ -8,8 +8,16 @@ public class Easy {
         int[] arr = {3, 1, 5, 4, 2};
         System.out.println(Arrays.toString(arr));
 //        bubbleSort(arr);
-        selectionSort(arr);
+//        selectionSort(arr);
+//        insertionSort(arr);
+        cycleSort(arr);
         System.out.println(Arrays.toString(arr));
+    }
+
+    static void swap(int[] arr, int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 
     static void bubbleSort(int[] arr){
@@ -25,11 +33,6 @@ public class Easy {
                 return;
         }
     }
-    static void swap(int[] arr, int i, int j){
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
 
     static void selectionSort(int[] arr){
         for (int i = 0; i < arr.length-1; i++) {
@@ -39,6 +42,31 @@ public class Easy {
                     min_index = j;
             }
             swap(arr, i, min_index);
+        }
+    }
+
+    static void insertionSort(int[] arr){
+        for (int i = 1; i < arr.length; i++) {
+            int e = arr[i];
+            int j = i-1;
+            while (j>=0 && e<arr[j]){
+                arr[j+1] = arr[j];
+                j--;
+            }
+            arr[j+1] = e;
+        }
+    }
+
+    static void cycleSort(int[] arr){
+        int i = 0;
+        while (i<arr.length){
+            int correct_index = arr[i]-1;
+            if (arr[i] == arr[correct_index]){
+                i++;
+            }
+            else {
+                swap(arr, i, correct_index);
+            }
         }
     }
 
