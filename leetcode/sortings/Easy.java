@@ -1,30 +1,37 @@
 package com.san.leetcode.sortings;
 
+import java.util.Arrays;
+
 public class Easy {
     public static void main(String[] args){
         System.out.println("Hi this is san!");
+        int[] arr = {3, 1, 5, 4, 2};
+        System.out.println(Arrays.toString(arr));
+        bubbleSort(arr);
+        System.out.println(Arrays.toString(arr));
+    }
+
+    static void bubbleSort(int[] arr){
+        for (int i = 0; i < arr.length; i++) {
+            boolean is_sorted = true;
+            for (int j = 1; j < arr.length-i; j++) {
+                if (arr[j-1]>arr[j]){
+                    swap(arr, j-1, j);
+                    is_sorted = false;
+                }
+            }
+            if (is_sorted)
+                return;
+        }
+    }
+    static void swap(int[] arr, int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 
 //    1. https://leetcode.com/problems/merge-sorted-array/
     static void merge(int[] nums1, int m, int[] nums2, int n) {
-        int pt1 = 0;
-        int pt2 = 0;
-        while (pt1<m+n && pt2<n){
-            if (nums1[pt1]>=nums2[pt2]){
-                slide1(nums1, pt1);
-                nums1[pt1]=nums2[pt2];
-                pt1++;
-                pt2++;
-            }
-            else {
-                pt1++;
-            }
-        }
-    }
-    static void slide1(int[] arr, int index){
-        for (int i = arr.length-2;i >= index; i--) {
-            arr[i+1] = arr[i];
-        }
-    }
 
+    }
 }
