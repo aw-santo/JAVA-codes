@@ -113,4 +113,39 @@ public class Easy {
         }
         return ls;
     }
+
+//    3. https://leetcode.com/problems/find-the-duplicate-number/
+    public int findDuplicate(int[] nums) {
+        int i = 0;
+        while(i<nums.length){
+            int c_index = nums[i]-1;
+            if (i!=c_index){
+                if (nums[i]==nums[c_index])
+                    return nums[i];
+                swap(nums, i, c_index);
+            }
+            else
+                i++;
+        }
+        return -1;
+    }
+
+//    4. https://leetcode.com/problems/find-all-duplicates-in-an-array/
+    public List<Integer> findDuplicates(int[] nums) {
+        List<Integer> ls = new ArrayList<>();
+        int i = 0;
+        while (i<nums.length){
+            int c_index = nums[i]-1;
+            if (nums[i]!=nums[c_index]){
+                swap(nums, i, c_index);
+            }
+            else
+                i++;
+        }
+        for (int j = 0; j < nums.length; j++) {
+            if (nums[j]!=j+1)
+                ls.add(nums[j]);
+        }
+        return ls;
+    }
 }
