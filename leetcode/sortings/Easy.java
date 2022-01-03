@@ -203,4 +203,39 @@ public class Easy {
             m++;
         }
     }
+
+//    8. https://leetcode.com/problems/majority-element/
+    public int majorityElement(int[] nums) {
+        int count = 0;
+        int m_element = 0;
+        for (int e : nums) {
+            if (count==0)m_element=e;
+            if (m_element==e)count++;
+            else count--;
+        }
+        return m_element;
+    }
+
+//    9. https://leetcode.com/problems/contains-duplicate/
+    public boolean containsDuplicate(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+        boolean is_sorted = true;
+            for (int j = 1; j < nums.length-i; j++) {
+                if (nums[j-1]>nums[j]){
+                    swap(nums, j, j-1);
+                    is_sorted = false;
+                }
+                if (nums[j-1]==nums[j]){
+                    return true;
+                }
+            }
+            if (is_sorted)
+                break;
+        }
+        for (int i = 0; i < nums.length-1; i++) {
+            if (nums[i]==nums[i+1])
+                return true;
+        }
+        return false;
+    }
 }
