@@ -6,14 +6,16 @@ import java.util.List;
 
 public class Easy {
     public static void main(String[] args){
-        System.out.println("Hi this is san!");
-        int[] arr = {3, 1, 5, 4, 2};
-        System.out.println(Arrays.toString(arr));
+//        System.out.println("Hi this is san!");
+//        int[] arr = {3, 1, 5, 4, 2};
+//        System.out.println(Arrays.toString(arr));
 //        bubbleSort(arr);
 //        selectionSort(arr);
 //        insertionSort(arr);
-        cycleSort(arr);
-        System.out.println(Arrays.toString(arr));
+//        cycleSort(arr);
+//        System.out.println(Arrays.toString(arr));
+
+        merge(new int[]{1, 2, 3, 0, 0, 0}, 3, new int[]{2, 5, 6}, 3);
     }
 
     static void swap(int[] arr, int i, int j){
@@ -147,5 +149,58 @@ public class Easy {
                 ls.add(nums[j]);
         }
         return ls;
+    }
+
+//    5. https://leetcode.com/problems/set-mismatch/
+    static int[] findErrorNums(int[] nums) {
+        int i = 0;
+        while (i<nums.length){
+            int c_index = nums[i] - 1;
+            if (nums[i] != nums[c_index]){
+                swap(nums, i, c_index);
+            }
+            else
+                i++;
+        }
+
+        for (int j = 0; j < nums.length; j++) {
+            if (j != nums[j]-1){
+                return new int[]{nums[j], j+1};
+            }
+        }
+        return new int[]{-1, -1};
+    }
+
+//    6. https://leetcode.com/problems/first-missing-positive/\
+    static int firstMissingPositive(int[] nums) {
+        int i = 0;
+        while(i<nums.length){
+            int c_index = nums[i] - 1;
+            if (nums[i]>0 && nums[i]<=nums.length && nums[i]!=nums[c_index]){
+                swap(nums, i, c_index);
+            }
+            else {
+                i++;
+            }
+        }
+        for (int j = 0; j < nums.length; j++) {
+            if (nums[j] != j+1)
+                return j+1;
+        }
+        return nums.length+1;
+    }
+
+//    7. https://leetcode.com/problems/merge-sorted-array/
+    static void merge(int[] nums1, int m, int[] nums2, int n){
+        for (int i = 0; i < n; i++) {
+            int j = m-1;
+
+            while (j>=0 && nums2[i]<nums1[j]){
+                nums1[j+1] = nums1[j];
+                j--;
+            }
+            nums1[j+1] = nums2[i];
+            m++;
+        }
     }
 }
