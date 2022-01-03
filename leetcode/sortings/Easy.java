@@ -238,4 +238,40 @@ public class Easy {
         }
         return false;
     }
+
+//    11. https://leetcode.com/problems/third-maximum-number/
+    public int thirdMax(int[] nums) {
+        if (nums.length<3){
+            int max = Integer.MIN_VALUE;
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i]>max)
+                    max = nums[i];
+            }
+            return max;
+        }
+
+        int m1 = Integer.MIN_VALUE;
+        int m2 = Integer.MIN_VALUE;
+        int m3 = Integer.MIN_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == m1){
+                continue;
+            }
+            if (nums[i] > m1) {
+                m3 = m2;
+                m2 = m1;
+                m1 = nums[i];
+            }
+            else if (nums[i]!=m1 && nums[i] > m2){
+                m3 = m2;
+                m2 = nums[i];
+            }
+            else if (nums[i]!=m2 && nums[i]<m2 && nums[i] > m3){
+                m3 = nums[i];
+            }
+        }
+
+        return m3==Integer.MIN_VALUE ? m1 : m3;
+    }
+
 }
