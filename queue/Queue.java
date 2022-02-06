@@ -1,74 +1,127 @@
 package com.san.queue;
 
 public class Queue {
-    private int front;
-    private int rear;
-    private int capacity;
-    private int[] arr;
-    private int size;
+    private int[] data;
+
+    private static final int DEFAULT_SIZE = 10;
+
+    private int end = 0;
 
     public Queue(){
-        this.front = this.rear = -1;
-        this.capacity = 100;
-        this.arr = new int[this.capacity];
-        this.size = 0;
+        this(DEFAULT_SIZE);
     }
 
-    public int enqueue(int n){
-        if (this.rear>=capacity){
-            return -1;
+    public Queue(int size){
+        this.data = new int[size];
+    }
+
+    public boolean enqueue(int n){
+        if (this.isFull())
+            return false;
+        this.data[this.end++] = n;
+        return true;
+    }
+
+    public int dequeue() throws Exception {
+        if(this.isEmpty()){
+            throw new Exception("Queue is empty");
         }
-        this.arr[++this.rear] = n;
-        if (this.front==-1)
-            this.front++;
-
-        this.size++;
-
-        return 1;
-    }
-
-    public int dequeue(){
-        if (this.front==-1){
-            return Integer.MIN_VALUE;
+        int removed = this.data[0];
+        // shift the elements
+        for (int i = 1; i < this.end; i++) {
+            this.data[i-1] = this.data[i];
         }
-        int val = this.arr[this.front];
-        this.front++;
-        this.size--;
-        if (this.rear<this.front){
-            this.front=this.rear = -1;
-            this.size = 0;
+        this.end--;
+        return removed;
+    }
+
+    public boolean isFull(){
+        return  this.end == this.data.length;
+    }
+    public boolean isEmpty(){
+        return this.end == 0;
+    }
+    public void display(){
+        for ( int i=0; i<this.end; i++) {
+            System.out.print(this.data[i] + " ");
         }
-
-        return val;
+        System.out.println();
     }
-
-    public int getFront(){
-        return this.size==0 ? this.front : this.arr[this.front];
-    }
-    public int getRear(){
-        return this.size==0 ? this.rear : this.arr[this.rear];
-    }
-    public int getSize(){
-        return this.size;
-    }
-    public int getCapacity(){
-        return this.capacity;
-    }
-
-
 }
-class implep{
-    public static void main(String[] args){
-        Queue q = new Queue();
-        q.enqueue(5);
-        q.enqueue(1);
-        q.enqueue(3);
-        q.enqueue(565);
-        q.dequeue();
-        System.out.println(q.getCapacity());
-        System.out.println(q.getFront());
-        System.out.println(q.getRear());
-        System.out.println(q.getSize());
+class implep {
+    public static void main(String[] args) throws Exception {
+//        Queue q = new Queue();
+//        q.enqueue(45);
+//        q.enqueue(13);
+//        q.enqueue(1);
+//        q.enqueue(1234);
+//        q.display();
+//        q.dequeue();
+//        q.display();
+        CircQ cq = new CircQ();
+        cq.enqueue(456);
+        cq.enqueue(4);
+        cq.enqueue(1);
+        cq.enqueue(1234);
+        cq.display();
+    }
+}
 
+class CircQ{
+    protected int[] data;
+    private static final int DEFAULT_SIZE = 10;
+
+    private int end = 0;
+    private int front = 0;
+    private int size = 0;
+
+    public CircQ(){
+        this(DEFAULT_SIZE);
+    }
+
+    public CircQ(int size){
+        this.data = new int[size];
+    }
+
+    public boolean enqueue(int n){
+        if (this.isFull())
+            return false;
+        this.data[this.end] = n;
+        this.end = this.end % this.data.length;
+        this.size++;
+        return true;
+    }
+
+    public int dequeue() throws Exception {
+        if(this.isEmpty()){
+            throw new Exception("Queue is empty");
+        }
+        int removed = this.data[front];
+        this.front = this.front % this.data.length;
+        this.size--;
+        return removed;
+    }
+
+    public boolean isFull(){
+        return  this.size == this.data.length;
+    }
+    public boolean isEmpty(){
+        return this.size == 0;
+    }
+    public int front() throws Exception {
+        if (this.isEmpty())
+            throw new Exception("Queue is Empty!");
+        return this.data[front];
+    }
+    public void display(){
+        int i = this.front;
+        if (this.isEmpty())
+            return;
+        do {
+            System.out.print(this.data[i] + " ");
+            i++;
+            i %= this.data.length;
+        }while (i!=this.end);
+        System.out.println();
     }
 }

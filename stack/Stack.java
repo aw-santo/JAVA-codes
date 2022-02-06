@@ -34,14 +34,14 @@ public class Stack {
     public int pop() throws Exception{
         if (this.isEmpty()){
             System.out.println("Stack is empty!");
-            throw new Exception("Cannot pop from empty stack")
+            throw new Exception("Cannot pop from empty stack");
         }
         return this.data[this.ptr--];
     }
 
     public int peek() throws Exception{
         if (this.isEmpty())
-            throw new Exception("Cannot peek into an empty stack")
+            throw new Exception("Cannot peek into an empty stack");
         return this.data[ptr];
     }
 }
