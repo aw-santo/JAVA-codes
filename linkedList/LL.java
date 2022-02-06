@@ -74,7 +74,7 @@ public class LL {
         if (this.head == null){
             this.tail = null;
         }
-        size--;
+        this.size--;
         return val;
     }
 
