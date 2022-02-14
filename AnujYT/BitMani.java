@@ -4,10 +4,11 @@ import java.util.Arrays;
 
 public class BitMani{
     public static void main(String[] args){
-        int[] arr = {5, 4, 1, 4, 3, 5, 1, 7};
+        int[] arr = { 6, 2, 5, 2, 2, 6, 6 };
 
 //        System.out.println(everyRepeatsTwiceFind1(arr));
-        System.out.println(Arrays.toString(everyRepeatsTwiceFind2(arr)));
+//        System.out.println(Arrays.toString(everyRepeatsTwiceFind2(arr)));
+        System.out.println(everyRepeatsKTimesFind1(arr, 3));
     }
     static int everyRepeatsTwiceFind1(int[] arr){
         int xor = 0;
@@ -37,7 +38,21 @@ public class BitMani{
         }
         return new int[]{no_has_0, no_has_1};
     }
-    static int everyRepeatsKTimesFind1(int[] arr){
+    static int everyRepeatsKTimesFind1(int[] arr, int k){
+        int[] bit_arr = new int[32];
 
+        for (int i = 0; i < bit_arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                if ((arr[j] & (1<<i)) != 0){
+                    bit_arr[i]++;
+                }
+            }
+        }
+
+        int res = 0;
+        for (int i = 0 ; i < bit_arr.length ; i++) {
+            res += (bit_arr[i]%k)*(1<<i);
+        }
+        return res;
     }
 }
