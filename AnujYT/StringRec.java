@@ -4,7 +4,13 @@ public class StringRec {
     public static void main(String[] args){
 //        System.out.println(isPalindrome("sanafs"));
 //        powersetOfString("abc");
-        permute("abc", 0, 2);
+//        permute("abc", 0, 2);
+        String str = "sanket is good boy";
+//        System.out.println(str);
+//        str = skipChar(str, 'a');
+//        str = skipString(str, "sanket");
+//        System.out.println(str);
+        subset("abc");
     }
 
 
@@ -50,5 +56,41 @@ public class StringRec {
         tempArr[i] = tempArr[j];
         tempArr[j] = temp;
         return String.valueOf(tempArr);
+    }
+
+    static String skipChar(String str, char ch){
+        if (str.isEmpty())
+            return "";
+
+        char f_char = str.charAt(0);
+
+        if (f_char == ch)
+            return skipChar(str.substring(1), ch);
+        else
+            return f_char + skipChar(str.substring(1), ch);
+    }
+
+    static String skipString(String str, String skip){
+        if (str.isEmpty())
+            return "";
+
+        if (str.startsWith(skip))
+            return skipString(str.substring(skip.length()), skip);
+        else
+            return str.charAt(0) + skipString(str.substring(1), skip);
+    }
+
+    static void subset(String str){
+        doSubset(str, 0, "");
+    }
+
+    private static void doSubset(String str, int i, String s) {
+        if (i>=str.length()) {
+            System.out.println(s);
+            return;
+        }
+
+        doSubset(str, i+1, s+str.charAt(i));
+        doSubset(str, i+1, s);
     }
 }
