@@ -5,13 +5,15 @@ import java.util.Arrays;
 
 public class Sort {
     public static void main(String[] args){
-        int[] arr = {8, 3, 5, 2, 6, 1, 9, 4};
+//        int[] arr = {8, 3, 5, 2, 6, 1, 9, 4};
+        int[] arr = {4, 1, 5, 3, 2};
 //        int[] arr = {1, 2, 3, 4, 5, 6, 8, 9};
         System.out.println(Arrays.toString(arr));
 //        bubbleSort(arr);
 //        insertionSort(arr);
 //        selectionSort(arr);
-        arr = mergeSort(arr);
+//        arr = mergeSort(arr);
+        mergeSortIn(arr, 0, arr.length-1);
         System.out.println(Arrays.toString(arr));
     }
 
@@ -122,9 +124,9 @@ public class Sort {
     private static void mergeIn(int[] arr, int l, int mid, int r) {
         int f_counter = l;
         int s_counter = mid+1;
-        int n_counter = l;
+        int n_counter = 0;
 
-        int[] nrr = new int[r-l];
+        int[] nrr = new int[r-l+1];
 
         while (f_counter<=mid && s_counter<=r){
             if (arr[f_counter]<arr[s_counter]){
@@ -148,7 +150,7 @@ public class Sort {
             n_counter++;
         }
         for (int i = l; i <= r; i++) {
-            arr[i] = nrr[i];
+            arr[i] = nrr[i-l];
         }
     }
 }
