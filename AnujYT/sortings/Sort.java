@@ -13,7 +13,9 @@ public class Sort {
 //        insertionSort(arr);
 //        selectionSort(arr);
 //        arr = mergeSort(arr);
-        mergeSortIn(arr, 0, arr.length-1);
+//        mergeSortIn(arr, 0, arr.length-1);
+//        quickSort(arr, 0, arr.length-1);
+        Arrays.sort(arr);
         System.out.println(Arrays.toString(arr));
     }
 
@@ -63,8 +65,6 @@ public class Sort {
         }
     }
 
-    static void quickSort(int[] arr){  }
-    
     static int[] mergeSort(int[] arr){
         if (arr.length<=1){
             return arr;
@@ -152,5 +152,32 @@ public class Sort {
         for (int i = l; i <= r; i++) {
             arr[i] = nrr[i-l];
         }
+    }
+
+    static void quickSort(int[] arr, int l, int h){
+        if (l>=h){
+            return;
+        }
+        int pivot = quick(arr, l, h);
+
+        quickSort(arr, l, pivot-1);
+        quickSort(arr, pivot+1, h);
+    }
+
+    private static int quick(int[] arr, int l, int h) {
+        int i = l;
+        int j = h;
+        int pivot = arr[l];
+
+        while (i<=j){
+            while(arr[i]<=pivot)
+                i++;
+            while(arr[j]>pivot)
+                j--;
+            if (i<j)
+                swap(arr, i, j);
+        }
+        swap(arr, l, j);
+        return j;
     }
 }
