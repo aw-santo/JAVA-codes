@@ -10,7 +10,9 @@ public class StringRec {
 //        str = skipChar(str, 'a');
 //        str = skipString(str, "sanket");
 //        System.out.println(str);
-        subset("abc");
+//        subset("abc");
+        System.out.println(skipGod("SanketLovesChanchu", "Lov", "Loves", ""));
+        System.out.println(skipGod("SanketLovChanchu", "Lov", "Loves", ""));
     }
 
 
@@ -78,6 +80,26 @@ public class StringRec {
             return skipString(str.substring(skip.length()), skip);
         else
             return str.charAt(0) + skipString(str.substring(1), skip);
+    }
+
+    static String skipStringv2(String str, String skip, String ans){
+        if (str.isEmpty())
+            return ans;
+
+        if (str.startsWith(skip))
+            return skipStringv2(str.substring(skip.length()), skip, ans);
+        else
+            return skipStringv2(str.substring(1), skip, ans+str.charAt(0));
+    }
+
+    static String skipGod(String str, String skip, String not_skip, String ans){
+        if (str.isEmpty())
+            return ans;
+
+        if (str.startsWith(skip) && !str.startsWith(not_skip))
+            return skipGod(str.substring(skip.length()), skip, not_skip, ans);
+        else
+            return skipGod(str.substring(1), skip, not_skip, ans + str.charAt(0));
     }
 
     static void subset(String str){
