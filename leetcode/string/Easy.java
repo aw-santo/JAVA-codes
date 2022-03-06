@@ -18,12 +18,15 @@ public class Easy{
         // System.out.println(str);
 
         // 3
-        System.out.println(parser("G()(al)"));
+        // System.out.println(parser("G()(al)"));
+
+        // 4
+        
         
     }
 
     // 1. Defanging an Ip address
-    public static void defangIP(String ip){
+    static void defangIP(String ip){
         System.out.println(ip.replace(".", "[.]"));
     }
 
@@ -62,5 +65,35 @@ public class Easy{
         command = command.replace("()", "o");
         command = command.replace("(al)", "al");
         return command;
+    }
+
+    // 4. Count Items Matching a rule
+    public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
+        int count = 0;
+        switch (ruleKey) {
+            case "type":
+                count = help(items, ruleKey, ruleValue, 0);
+                break;
+
+            case "color":
+            count = help(items, ruleKey, ruleValue, 1);
+                break;
+
+            case "name":
+            count = help(items, ruleKey, ruleValue, 2);
+                break;
+        
+            default:
+                break;
+        }
+    }
+    static int help(List<List<String>> items, String ruleKey, String ruleValue, int col){
+        int count = 0;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).get(col).equals(ruleValue)) {
+                count++;
+            }
+        }
+        return count;
     }
 } 
