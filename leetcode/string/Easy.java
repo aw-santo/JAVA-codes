@@ -5,6 +5,10 @@ package com.san.leetcode.string;
 
 import java.util.Scanner;
 import java.lang.StringBuilder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.lang.String;
 
 public class Easy{
     public static void main(String[] args){
@@ -22,7 +26,9 @@ public class Easy{
 
         // 4
         
-        
+        // String name = "Sanket is a very noice guy!";
+        String[] arr = name.split(" ");
+        System.out.println(Arrays.toString(arr));
     }
 
     // 1. Defanging an Ip address
@@ -86,6 +92,7 @@ public class Easy{
             default:
                 break;
         }
+        return count;
     }
     static int help(List<List<String>> items, String ruleKey, String ruleValue, int col){
         int count = 0;
@@ -95,5 +102,19 @@ public class Easy{
             }
         }
         return count;
+    }
+
+    // 5. Sorting the Sentence
+    static String sortSentence(String s) {
+        String[] arr = s.split(" ");
+        ArrayList<String> arr1 = new ArrayList<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            int last = arr[i].length()-1;
+            int ind = arr[i].charAt(last);
+            arr1.add(ind, arr[i].substring(0, last-1));
+        }
+
+        return String.join(", ", arr1);
     }
 } 
