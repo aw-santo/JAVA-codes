@@ -27,8 +27,11 @@ public class Easy{
         // 4
         
         // String name = "Sanket is a very noice guy!";
-        String[] arr = name.split(" ");
-        System.out.println(Arrays.toString(arr));
+        // String[] arr = name.split(" ");
+        // System.out.println(Arrays.toString(arr));
+        String s = "st1";
+        int n = (int)(s.charAt(2));
+        System.out.println(n);
     }
 
     // 1. Defanging an Ip address
@@ -107,7 +110,7 @@ public class Easy{
     // 5. Sorting the Sentence
     static String sortSentence(String s) {
         String[] arr = s.split(" ");
-        ArrayList<String> arr1 = new ArrayList<>();
+        ArrayList<String> arr1 = new ArrayList<>(arr.length);
 
         for (int i = 0; i < arr.length; i++) {
             int last = arr[i].length()-1;
