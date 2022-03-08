@@ -8,7 +8,6 @@ import java.lang.StringBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.lang.String;
 
 public class Easy{
     public static void main(String[] args){
@@ -110,12 +109,12 @@ public class Easy{
     // 5. Sorting the Sentence
     static String sortSentence(String s) {
         String[] arr = s.split(" ");
-        ArrayList<String> arr1 = new ArrayList<>(arr.length);
+        String[] arr1 = new String(arr.length);
 
         for (int i = 0; i < arr.length; i++) {
             int last = arr[i].length()-1;
-            int ind = arr[i].charAt(last);
-            arr1.add(ind, arr[i].substring(0, last-1));
+            int ind = Integer.parseInt(Character.toString(arr[i].charAt(last)));
+            arr1[ind] = arr[i].substring(0, last-1);
         }
 
         return String.join(", ", arr1);
