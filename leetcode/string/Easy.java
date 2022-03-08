@@ -113,10 +113,44 @@ public class Easy{
 
         for (int i = 0; i < arr.length; i++) {
             int last = arr[i].length()-1;
-            int ind = Integer.parseInt(Character.toString(arr[i].charAt(last)));
-            arr1[ind] = arr[i].substring(0, last-1);
+            int ind = arr[i].charAt(last) - '0';
+            arr1[ind-1] = arr[i].substring(0, last);
         }
 
         return String.join(", ", arr1);
+    }
+
+    // 6. Check if two strings are equivalent
+    static boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+        return String.join("", word1).equals(String.join("", word2));
+    }
+
+    // 7. To Lower Case
+    static String toLowerCase(String s) {
+        // return s.toLowerCase();
+        String str = "";
+        for (int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) >= 'A' && s.charAt(i) <= 'Z')
+                str+= (char)((int)(s.charAt(i)) + 32 );
+            else
+                str+= s.charAt(i);
+        }
+        return str;
+    }
+
+    // 8. Determine if string halves are alike
+    static boolean halvesAreAlike(String s) {
+        int a = countVowel(s.substring(0, s.length()/2));
+        int b = countVowel(s.substring(s.length()/2, s.length()));
+
+        return a==b;
+    }
+    static int countVowel(String s){
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if(s.charAt(i)=='A' || s.charAt(i)=='a' || s.charAt(i)=='E' || s.charAt(i)=='e' || s.charAt(i)=='I' || s.charAt(i)=='i' || s.charAt(i)=='O' ||s.charAt(i)=='o' || s.charAt(i)=='U' ||s.charAt(i)=='u')
+                count++;
+        }
+        return count;
     }
 } 
