@@ -1,0 +1,39 @@
+static void quicksort(int[] arr, int l, int h){
+        
+        if(l>=h)
+            return;
+
+        int pivot = partition(arr, l, h);
+
+        quicksort(arr, l, pivot-1);
+        quicksort(arr, pivot+1, h);
+    }
+    static int partition(int[] arr, int l, int h){
+        random(arr, l, h);
+        int i = l;
+        int j = h;
+        int pivot = arr[l];
+        int pv_index = l;
+
+        while (i<j) {
+            while (i<h && arr[i] <= pivot) i++;
+
+            while (j>l && arr[j] > pivot) j--;
+
+            if(i<j)
+                swap(arr, i, j);
+        }
+
+        swap(arr, pv_index, j);
+        return j;
+    }
+    static void random(int[] arr, int l, int h){
+        Random rand = new Random();
+        int pivot = rand.nextInt(h-l) + l;
+        swap(arr, l, pivot);
+    }
+    static void swap(int[] arr, int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
