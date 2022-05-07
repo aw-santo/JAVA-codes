@@ -11,8 +11,24 @@ public class Easy {
 //        System.out.println("san form sun");
 //        System.out.println(array10("sanket"));
 //        int[][] arr = new int[3][3];
-        int[] arr = { 9,9,9,9,9,9,9,9,9,9 };
-        System.out.println(addToArrayForm(arr, 1));
+        // int[] arr = { 9,9,9,9,9,9,9,9,9,9 };
+        // System.out.println(addToArrayForm(arr, 1));
+
+        int[][] arr = {{0,1},{1,0}};
+        int[][] target = {{1,0},{0,1}};
+        for (int[] is : target) {
+            System.out.println(Arrays.toString(is));
+        }
+        // System.out.println();
+        System.out.println(rotate90(arr, target));
+        // for (int[] is : arr) {
+        //     System.out.println(Arrays.toString(is));
+        // }
+        System.out.println("New");
+        int[][] n = {{0,1},{1,0}};
+        int[][] a = {{0,1},{1,0}};
+        System.out.println(Arrays.equals(n, a));
+
     }
 
 //    1. https://leetcode.com/problems/build-array-from-permutation/
@@ -291,4 +307,61 @@ public class Easy {
 //    static int maximumPopulation(int[][] logs) {
 //
 //    }
+
+    // 20. Determine Whether Matrix Can Be Obtained By Rotation (https://leetcode.com/problems/determine-whether-matrix-can-be-obtained-by-rotation/)
+
+    // static boolean findRotation(int[][] mat, int[][] target) {
+        
+    // }
+    static boolean rotate90(int[][] arr, int[][] target) {
+        if (arr.equals(target)) {
+            return true;
+        }
+        for (int i = 0; i < 3; i++) {
+            transposeRight(arr);
+            reverseY(arr);
+            boolean is_it = false;
+            for (int j = 0; j < arr.length; j++) {
+                if (!Arrays.equals(arr[j], target[j])) {
+                    // is_it =  false;
+                    break;
+                }
+                else {
+                    is_it = true;
+                }
+            }
+            if (is_it) {
+                return true;
+            }
+        }
+        return false;
+        // transposeRight(arr);
+        // reverseY(arr);
+        // for (int[] is : arr) {
+        //     System.out.println(Arrays.toString(is));
+        // }
+        // return true;
+    }
+    static void transposeRight(int[][] arr) {
+        int n = arr.length;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr.length; j++) {
+                int temp = arr[i][j];
+                arr[i][j] = arr[j][i];
+                arr[j][i] = temp;
+                // arr[i][j] = arr[j][n-i-1];
+            }
+        }
+    }
+    static void reverseY(int[][] arr) {
+        int n = arr.length;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < n/2; j++) {
+                // swap(arr[i], j, n-j-1);
+                int temp = arr[i][j];
+                arr[i][j] = arr[i][n-j-1];
+                arr[i][n-j-1] = temp;
+            }
+        }
+    }
 }
