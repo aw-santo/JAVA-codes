@@ -27,7 +27,7 @@ public class Easy {
         System.out.println("New");
         int[][] n = {{0,1},{1,0}};
         int[][] a = {{0,1},{1,0}};
-        System.out.println(Arrays.equals(n, a));
+        System.out.println(Arrays.deepEquals(n, a));
 
     }
 
@@ -314,38 +314,20 @@ public class Easy {
         
     // }
     static boolean rotate90(int[][] arr, int[][] target) {
-        if (arr.equals(target)) {
-            return true;
-        }
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             transposeRight(arr);
             reverseY(arr);
-            boolean is_it = false;
-            for (int j = 0; j < arr.length; j++) {
-                if (!Arrays.equals(arr[j], target[j])) {
-                    // is_it =  false;
-                    break;
-                }
-                else {
-                    is_it = true;
-                }
-            }
-            if (is_it) {
+
+            if (Arrays.deepEquals(arr, target)) {
                 return true;
             }
         }
         return false;
-        // transposeRight(arr);
-        // reverseY(arr);
-        // for (int[] is : arr) {
-        //     System.out.println(Arrays.toString(is));
-        // }
-        // return true;
     }
     static void transposeRight(int[][] arr) {
         int n = arr.length;
         for (int i = 0; i < arr.length; i++) {
-            for (int j = i; j < arr.length; j++) {
+            for (int j = i+1; j < arr.length; j++) {
                 int temp = arr[i][j];
                 arr[i][j] = arr[j][i];
                 arr[j][i] = temp;
