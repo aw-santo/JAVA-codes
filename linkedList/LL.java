@@ -88,6 +88,8 @@ public class LL {
         sec_last.next = null;
         this.tail = sec_last;
 
+        this.size--;
+
         return val;
     }
 
@@ -102,6 +104,8 @@ public class LL {
         int val = n.next.value;
 
         n.next = n.next.next;
+
+        this.size--;
 
         return val;
     }
